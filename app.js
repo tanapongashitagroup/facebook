@@ -1,7 +1,12 @@
 var MyServer = require('./myServer/myServer')
-var sv = new MyServer(3000);
+var Socket = require('./socket/Socket');
+
+var sv = new MyServer(2000);
+
 var bodyParser = require('body-parser')
 sv.initApp();
+var socket = new Socket(sv.getServer());
+
 sv.getApp().use(bodyParser.json())
 sv.getApp().get('/api/webhook', (req, res) => {
     if (req.query['hub.mode'] === 'subscribe' &&
@@ -15,11 +20,11 @@ sv.getApp().get('/api/webhook', (req, res) => {
 })
 sv.getApp().post('/api/webhook', (req, res) => {
     var data = req.body
-    console.log('xxx');
-    console.log(data);
+    socket.io.emit('chat', data);
     res.sendStatus(200)
-        //io.emit('chat', data)
+
 });
 sv.getApp().get('/', (req, res) => {
+
     res.json({ message: 'api working' });
 });
