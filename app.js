@@ -20,7 +20,7 @@ sv.getApp().get('/api/webhook', (req, res) => {
 })
 sv.getApp().post('/api/webhook', (req, res) => {
     var data = req.body
-    socket.io.emit('chat', data);
+    socket.io.emit(data.entry[0].id, data);
     res.sendStatus(200)
 
 });
