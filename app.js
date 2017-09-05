@@ -13,6 +13,7 @@ sv.getApp().get('/api/webhook', (req, res) => {
 })
 sv.getApp().post('/api/webhook', (req, res) => {
     var data = req.body
+    console.log('xxx');
     console.log(data);
     res.sendStatus(200)
         //io.emit('chat', data)
