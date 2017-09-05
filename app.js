@@ -1,6 +1,8 @@
 var MyServer = require('./myServer/myServer')
 var sv = new MyServer(3000);
+var bodyParser = require('body-parser')
 sv.initApp();
+sv.getApp().use(bodyParser.json())
 sv.getApp().get('/api/webhook', (req, res) => {
     if (req.query['hub.mode'] === 'subscribe' &&
         req.query['hub.verify_token'] === '112233445566xxccvvbb') {
