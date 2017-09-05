@@ -14,7 +14,7 @@ sv.getApp().get('/api/webhook', (req, res) => {
 sv.getApp().post('/api/webhook', (req, res) => {
     var data = req.body
     console.log(data);
-    io.emit('chat', data)
+    //io.emit('chat', data)
 });
 sv.getApp().get('/', (req, res) => {
     res.json({ message: 'api working' });
