@@ -17,7 +17,7 @@ class MyServer {
             next()
         }
         this.app.use(allowCrossDomain)
-        this.server.listen(this.port, () => {
+        this.server.listen(process.env.PORT || this.port, () => {
             console.log('app listening on port ' + this.port)
         })
     }
